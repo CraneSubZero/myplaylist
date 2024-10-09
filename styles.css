@@ -1,0 +1,170 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1db954;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #191414;
+    padding: 20px;
+    text-align: center;
+}
+
+header img {
+    max-width: 150px;
+    height: auto;
+}
+
+.container {
+    padding: 20px;
+    max-width: 800px; /* Reduced max-width for less horizontal space */
+    margin: auto;
+    flex-grow: 1;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #333;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #191414;
+}
+
+td {
+    background-color: #282828;
+}
+
+a {
+    color: #1db954;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #1db954;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #14833b;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Reduced gap between form elements */
+}
+
+label, input, select {
+    font-size: 1em;
+}
+
+label {
+    margin-bottom: 5px; /* Reduce space below label */
+}
+
+input, select {
+    padding: 10px;
+    border: none;
+    background-color: #333;
+    color: white;
+}
+
+/* Back Button */
+.back-button {
+    display: inline-block;
+    background-color: #1db954; /* Spotify green */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 25px; /* Rounded corners */
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Space above the button */
+}
+
+.back-button:hover {
+    background-color: #14833b; /* Darker green on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #191414;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px; /* Adjust for smaller screens */
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    table, th, td {
+        font-size: 0.9em;
+    }
+
+    form {
+        gap: 5px; /* Further reduce gap on smaller screens */
+    }
+
+    input, select {
+        font-size: 0.9em;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    table, th, td {
+        font-size: 0.8em;
+        padding: 8px;
+    }
+
+    header img {
+        max-width: 120px;
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+}
