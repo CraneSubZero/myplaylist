@@ -37,14 +37,14 @@ include 'config.php';
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>
                             <td>{$row['id']}</td>
-                            <td>{$row['song']}</td>
-                            <td>{$row['artist']}</td>
-                            <td>{$row['album']}</td>
-                            <td>{$row['genre']}</td>
+                            <td>" . htmlspecialchars($row['song']) . "</td>
+                            <td>" . htmlspecialchars($row['artist']) . "</td>
+                            <td>" . htmlspecialchars($row['album']) . "</td>
+                            <td>" . htmlspecialchars($row['genre']) . "</td>
                             <td>{$row['year']}</td>
                             <td>
-                                <a href='update.php?id={$row['id']}'>Edit</a> | 
-                                <a href='delete.php?id={$row['id']}'>Delete</a>
+                                <a href='update.php?id={$row['id']}' onclick='return confirmEdit()'>Edit</a> | 
+                                <a href='delete.php?id={$row['id']}' onclick='return confirmDelete(\"" . htmlspecialchars($row['song']) . "\")'>Delete</a>
                             </td>
                           </tr>";
                 }
@@ -57,11 +57,25 @@ include 'config.php';
         </table>
 
         <br>
-        <a href="create.php"><button>Add New Song</button></a>
+        <a href="create.php" onclick="return confirmAdd()"><button>Add New Song</button></a>
     </div>
 
     <footer>
         <p>Music Playlist - Inspired by Spotify UI</p>
     </footer>
+
+    <script>
+    function confirmEdit() {
+        return confirm("Are you sure you want to edit this song?");
+    }
+    
+    function confirmDelete(songName) {
+        return confirm("Are you sure you want to delete '" + songName + "'? This action cannot be undone!");
+    }
+    
+    function confirmAdd() {
+        return confirm("Are you sure you want to add a new song to your playlist?");
+    }
+    </script>
 </body>
 </html>

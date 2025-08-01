@@ -8,14 +8,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $genre = $_POST['genre'];
     $year = $_POST['year'];
 
-    $sql = "INSERT INTO playlist (song, artist, album, genre, year) VALUES ('$song', '$artist', '$album', '$genre', '$year')";
+    $sql = "INSERT INTO playlist (song, artist, album, genre, year) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssi", $song, $artist, $album, $genre, $year);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+    if ($stmt->execute()) {
+        echo "<script>alert('Song added successfully!'); window.location.href='index.php';</script>";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "<script>alert('Error adding song: " . $stmt->error . "');</script>";
     }
 
+    $stmt->close();
     $conn->close();
 }
 ?>
@@ -35,8 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container">
         <h2>Add New Song to Playlist</h2>
+        
+        <div class="warning-box">
+            <p><strong>⚠️ Note:</strong> You are about to add a new song to your playlist. Please review your details before submitting.</p>
+        </div>
 
-        <form action="create.php" method="post">
+        <form action="create.php" method="post" onsubmit="return confirmAdd()">
             <label for="song">Song Title:</label>
             <input type="text" name="song" id="song" required>
 
@@ -76,5 +83,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <footer>
         <p>Music Playlist - Inspired by Spotify UI</p>
     </footer>
+
+    <script>
+    function confirmAdd() {
+        return confirm("Are you sure you want to add this song to your playlist?");
+    }
+    </script>
 </body>
 </html>
